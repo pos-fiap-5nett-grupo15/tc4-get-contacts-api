@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+	<PackageReference Include="FluentValidation" Version="11.11.0" />
+	<PackageReference Include="TechChallenge3.Common" Version="1.0.0" />
+	<PackageReference Include="TechChallenge3.Domain" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GetContact.Domain\GetContact.Domain.csproj" />
+    <ProjectReference Include="..\GetContact.Infrastructure\GetContact.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

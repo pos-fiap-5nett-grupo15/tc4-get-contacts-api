@@ -12,4 +12,8 @@
     <PackageReference Include="TechChallenge3.Infrastructure" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GetContacts.Application\GetContacts.Application.csproj" />
+  </ItemGroup>
+
 </Project>

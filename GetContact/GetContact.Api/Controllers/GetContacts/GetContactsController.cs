@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using GetContacts.Application.DTOs.Contacts.GetContacts;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using TechChallenge3.Common.DTOs;
@@ -10,20 +11,27 @@ namespace GetContact.Api.Controllers.GetContacts
     // TODO: Implementar autenticação/autorização
     public class GetContactsController : ControllerBase
     {
-        //private readonly IMediator _mediator;
+        private readonly IMediator _mediator;
 
-        //public GetContactsController(IMediator mediator)
-        //{
-        //    _mediator = mediator;
-        //}
+        public GetContactsController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         [SwaggerResponse(StatusCodes.Status200OK)]
         [SwaggerResponse(StatusCodes.Status400BadRequest, type: typeof(BaseReponse))]
-        public async Task<IActionResult> GetContactsAsync()
+        public async Task<IActionResult> GetContactByIdAsync([FromRoute] int id)
         {
-            await Task.CompletedTask;
-            return Ok();
+            return Ok(await this._mediator.Send(new GetContactsByIdRequest(id)));
+        }
+
+        [HttpGet("ddd/{ddd}")]
+        [SwaggerResponse(StatusCodes.Status200OK)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, type: typeof(BaseReponse))]
+        public async Task<IActionResult> GetContactsByDddAsync([FromRoute] int ddd)
+        {
+            return Ok(await this._mediator.Send(new GetContactsRequest(ddd)));
         }
     }
 }
