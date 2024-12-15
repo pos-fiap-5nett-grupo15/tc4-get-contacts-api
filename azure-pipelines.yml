@@ -16,13 +16,10 @@ variables:
   imageRepository: 'tc3-get-contact'
   containerRegistry: 'fiaptech3acr.azurecr.io'
   dockerfilePath: 'Dockerfile'
-  k8s-deployment: 'k8s-deployment-yaml'
-  k8sPathName: 'k8s'
 
-  kubernetesServiceEndpoint:
-  azureSubscription: '7d56ed09-a476-4593-9fbf-0927c0c53f5e'
-  kubernetesAzureResourceGroup: fiap-tech3
-  kubernetesClusterName: fiapaks
+  k8s-deployment: 'k8s-deployment-yaml'
+  k8sPathName: 'k8s/deployment.yaml'
+  kubernetesServiceEndpoint: 'fiap-aks-service-conn'
   kubernetesNamespace: tc3
   tag: '$(Build.BuildId)'
 
@@ -59,8 +56,6 @@ stages:
     displayName: "Upload Deployment YAML"
     dependsOn: Build
     steps:
-    - script: mkdir -p $(System.DefaultWorkingDirectory)/$(k8sPathName)
-      displayName: "Create artifact folder"
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: $(System.DefaultWorkingDirectory)/$(k8sPathName)
@@ -73,20 +68,13 @@ stages:
   - job: DeployDatabase
     displayName: Deploy Sql Server to AKS
     steps:
-      - task: DownloadPipelineArtifact@2
-        inputs:
-          buildTypo: 'current'
-          artifactName: $(k8s-deployment)
-          targetPath: $(System.DefaultWorkingDirectory)/$(k8sPathName)
+      - script: ls $(System.DefaultWorkingDirectory)/k8s
+        displayName: "Check folder $(System.DefaultWorkingDirectory)"
       - task: kubernetes@1
         displayName: "Apply Deployment YAML"
         inputs:
           connectionType: 'Kubernetes Service Connection'
-          kubernetesServiceEndppoint: $(kubernetesServiceEndpoint)
-          azureSubscription: $(azureSubscription) '7d56ed09-a476-4593-9fbf-0927c0c53f5e'
-          resourceGroup: $(kubernetesAzureResourceGroup) fiap-tech3
-          kubernetesCluster: $(kubernetesClusterName) fiapaks
-          namespace: $(kubernetesNamespace)
-          command: 'apply'
-          useConfigurableFile: false
-          configuration: '$(System.DefaultWorkingDirectory)/$(k8sPathName)/k8s-dev.yaml'
+          kubernetesServiceEndpoint: $(kubernetesServiceEndpoint)
+          namespace: $$(kubernetesNamespace)
+          command: apply
+          arguments: -f $(System.DefaultWorkingDirectory)/$(k8sPathName)
