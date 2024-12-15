@@ -23,9 +23,7 @@ variables:
   kubernetesNamespace: tc3
   tag: '$(Build.BuildId)'
 
-
-
-vmImageName: 'ubuntu-latest'
+  vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
@@ -52,7 +50,7 @@ stages:
           $(tag)
           latest
 
-    - job: UploadArtifact
+  - job: UploadArtifact
     displayName: "Upload Deployment YAML"
     dependsOn: Build
     steps:
