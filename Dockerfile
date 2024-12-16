@@ -1,8 +1,4 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-# ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS="{`"endpointCredentials`": [{`"endpoint`":`"https://pkgs.dev.azure.com/caiomaiavms-fiap/tech-challenge-3/_packaging/tech3/nuget/v3/index.json`", `"username`":`"docker`", `"password`":`"${FEED_ACCESSTOKEN}`"}]}"
-# RUN echo $VSS_NUGET_EXTERNAL_FEED_ENDPOINTS
-
-#ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS="{\"endpointCredentials\": [{\"endpoint\":\"https://pkgs.dev.azure.com/caiomaiavms-fiap/tech-challenge-3/_packaging/tech3/nuget/v3/index.json\",\"username\":\"caio.maia.vms@outlook.com\", \"password\":\"5Ljh8zrNKZKIxKYpKYB3qHcbMCWHImvC97kLr8vvKZOGzNWgJlBoJQQJ99ALACAAAAAAAAAAAAASAZDOWTHw\"}]}"
 
 WORKDIR /App
 

@@ -1,52 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sql-server
+  name: get-contacts
   namespace: tc3
   labels:
-    app: sql-server
+    app: get-contacts
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sql-server
+      app: get-contacts
   template:
     metadata:
       labels:
-        app: sql-server
+        app: get-contacts
     spec:
       containers:
-      - name: sql-server
-        image: fiaptech3acr.azurecr.io/sql-server-seed:latest #usar tag e nome do container como variáveis no build para simplificar a reutilização.
-        env:
-        - name: ACCEPT_EULA # Capturar valores de configuração da aplicação como variaveis do pipe, secrets ou configmaps.
-          valueFrom:
-            configMapKeyRef:
-              name: sql-server-config-map
-              key: ACCEPT_EULA
-        - name: MSSQL_SA_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: sql-server-secret
-              key: MSSQL_SA_PASSWORD
-        - name: SVC_PASS
-          valueFrom:
-            secretKeyRef:
-              name: sql-server-secret
-              key: SVC_PASS
+      - name: get-contacts
+        image: fiaptech3acr.azurecr.io/tc3-get-contact:latest #usar tag e nome do container como variáveis no build para simplificar a reutilização.
         ports:
-        - containerPort: 1433 # Acho que a porta a ser utilizada aqui é a 80
+        - containerPort: 8080
+        env:
+        - name: ASPNETCORE_URLS
+          value: "http://+:8080"
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
 ---
-apiVersion: v1 # Preciso desligar o loadBalancer do banco de dados e trocá-lo por um clusterIp
+apiVersion: v1
 kind: Service
 metadata:
-  name: webapp-service
-  namespace: webapp
+  name: get-contacs-service
+  namespace: tc3
 spec:
   selector:
-    app: webapp
+    app: get-contacts
   ports:
     - protocol: TCP
-      port: 8080
+      port: 80
       targetPort: 8080
-  type: LoadBalancer
+  type: ClusterIP
