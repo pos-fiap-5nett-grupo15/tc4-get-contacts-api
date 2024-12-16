@@ -73,6 +73,6 @@ stages:
         inputs:
           connectionType: 'Kubernetes Service Connection'
           kubernetesServiceEndpoint: $(kubernetesServiceEndpoint)
-          namespace: $$(kubernetesNamespace)
+          namespace: $(kubernetesNamespace)
           command: apply
           arguments: -f $(System.DefaultWorkingDirectory)/$(k8sPathName)
