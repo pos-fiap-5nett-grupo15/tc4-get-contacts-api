@@ -52,6 +52,7 @@ stages:
 
   - job: Tests
     displayName: Tests
+    dependsOn: Build
     pool:
       vmImage: $(vmImageName)
     steps:
@@ -64,7 +65,7 @@ stages:
         
   - job: UploadArtifact
     displayName: "Upload Deployment YAML"
-    dependsOn: Build
+    dependsOn: Tests
     steps:
     - task: PublishPipelineArtifact@1
       inputs:
