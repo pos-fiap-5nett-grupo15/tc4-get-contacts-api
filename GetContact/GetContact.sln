@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetContact.Domain", "GetCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetContact.Infrastructure", "GetContact.Infrastructure\GetContact.Infrastructure.csproj", "{0C03358C-0C43-4C6B-91F9-7D48EC48F55F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A8C0DBD4-B57B-46D6-8281-75A9E00667E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0C03358C-0C43-4C6B-91F9-7D48EC48F55F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C03358C-0C43-4C6B-91F9-7D48EC48F55F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C03358C-0C43-4C6B-91F9-7D48EC48F55F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8C0DBD4-B57B-46D6-8281-75A9E00667E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C0DBD4-B57B-46D6-8281-75A9E00667E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C0DBD4-B57B-46D6-8281-75A9E00667E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C0DBD4-B57B-46D6-8281-75A9E00667E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
