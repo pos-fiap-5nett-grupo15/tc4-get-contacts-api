@@ -5,8 +5,10 @@ using CreateContact.Infrastructure.UnitOfWork;
 using FluentValidation;
 using GetContacts.Application.DTOs.Contacts.GetContacts;
 using GetContacts.Application.Handlers.Contacts.GetContacts;
+using Prometheus;
 using TechChallenge3.Infrastructure.Crypto;
 using TechChallenge3.Infrastructure.DefaultStartup;
+using TechChallenge3.Infrastructure.Middlewares;
 using TechChallenge3.Infrastructure.Settings;
 using TechChallenge3.Infrastructure.UnitOfWork;
 
@@ -19,6 +21,8 @@ internal class Startup : BaseStartup
     public void ConfigureServiceApp(IServiceCollection services)
     {
         base.ConfigureService(services);
+
+
         // Logging
         services.AddLogging();
 
@@ -30,5 +34,10 @@ internal class Startup : BaseStartup
 
     }
 
-    internal void ConfigureApp(IApplicationBuilder app, IWebHostEnvironment environment) => base.Configure(app, environment);
+    internal void ConfigureApp(IApplicationBuilder app, IWebHostEnvironment environment)
+    {
+        base.Configure(app, environment);
+        app.UseMiddleware<RequestCounterMiddleware>();
+        app.UseMetricServer();
+    }
 }
