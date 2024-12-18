@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechChallenge3.Common.DTOs;
-using TechChallenge3.Domain.Entities.Contact;
+﻿using TechChallenge3.Common.DTOs;
 
 namespace GetContacts.Application.DTOs.Contacts.GetContacts
 {
@@ -15,5 +9,7 @@ namespace GetContacts.Application.DTOs.Contacts.GetContacts
         public string Email { get; set; } = string.Empty;
         public int Ddd { get; set; }
         public int Telefone { get; set; }
+        public string? SituacaoAnterior { get; set; }
+        public string? SituacaoAtual { get; set; }
     }
 }
