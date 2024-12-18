@@ -25,13 +25,5 @@ namespace GetContact.Api.Controllers.GetContacts
         {
             return Ok(await this._mediator.Send(new GetContactsByIdRequest(id)));
         }
-
-        [HttpGet("ddd/{ddd}")]
-        [SwaggerResponse(StatusCodes.Status200OK)]
-        [SwaggerResponse(StatusCodes.Status400BadRequest, type: typeof(BaseReponse))]
-        public async Task<IActionResult> GetContactsByDddAsync([FromRoute] int ddd)
-        {
-            return Ok(await this._mediator.Send(new GetContactsRequest(ddd)));
-        }
     }
 }
