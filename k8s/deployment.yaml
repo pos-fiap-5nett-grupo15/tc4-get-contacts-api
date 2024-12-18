@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: get-contacs-service
+  name: get-contacts-service
   namespace: tc3
 spec:
   selector:
