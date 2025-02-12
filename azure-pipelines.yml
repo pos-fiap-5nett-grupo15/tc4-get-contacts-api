@@ -4,6 +4,7 @@ trigger:
   branches:
     include:
       - dev
+      - feat/pipelines
 
   paths:
     exclude:
