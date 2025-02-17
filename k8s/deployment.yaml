@@ -25,6 +25,11 @@ spec:
           value: "http://+:8080"
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
+        - name: ConnectionStrings__DefaultConnection
+          valueFrom:
+            secretKeyRef:
+              name: db-connection
+              key: ConnectionStrings__DefaultConnection
 ---
 apiVersion: v1
 kind: Service
