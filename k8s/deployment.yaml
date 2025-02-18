@@ -28,7 +28,10 @@ spec:
           failureThreshold: 3
           initialDelaySeconds: 20
         resources:
-          cpu: 1m
+          requests:
+            cpu: "1m"
+          limits:
+            cpu: "100m"
         env:
         - name: ASPNETCORE_URLS
           value: "http://+:8080"
