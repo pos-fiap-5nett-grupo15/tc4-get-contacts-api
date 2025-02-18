@@ -29,9 +29,9 @@ spec:
           initialDelaySeconds: 20
         resources:
           requests:
-            cpu: "1m"
-          limits:
             cpu: "100m"
+          limits:
+            cpu: "200m"
         env:
         - name: ASPNETCORE_URLS
           value: "http://+:8080"
