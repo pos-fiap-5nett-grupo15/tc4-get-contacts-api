@@ -20,18 +20,6 @@ spec:
         image: PLACEHOLDER_CONTAINER_REGISTRY/PLACEHOLDER_IMAGE_REPOSITORY:PLACEHOLDER_TAG #usar tag e nome do container como variáveis no build para simplificar a reutilização.
         ports:
         - containerPort: 8080
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          periodSeconds: 10
-          failureThreshold: 3
-          initialDelaySeconds: 20
-        resources:
-          requests:
-            cpu: "100m"
-          limits:
-            cpu: "200m"
         env:
         - name: ASPNETCORE_URLS
           value: "http://+:8080"
