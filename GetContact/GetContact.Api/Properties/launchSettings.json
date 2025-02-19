@@ -5,7 +5,8 @@
       "launchBrowser": true,
       "launchUrl": "http://localhost:8080/swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__DefaultConnection": "sTnf1hJjqDpt2scmh5biX2cZBYTjtzpqyCMfksz+PuSxpa9REoUXliZlcGY9rjgiYhgGZ/2feExhHqa4lnj8P25MjqyeOJyBMDFcj5uDpqV0FC+QNRK4j9Wt7sL292qI8y2dR9xqCCgz7zwG4FecXtSUeD0wb4FN1t48yvXcQ2A="
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:8080"
